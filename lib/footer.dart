@@ -16,8 +16,8 @@ class Footer extends StatelessWidget {
           label: 'Search',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
+          icon: Icon(Icons.bookmark_border),
+          label: 'Watch List',
         ),
       ],
     );
