@@ -5,40 +5,6 @@ import 'footer.dart';
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
 
-class Tab1Content extends StatelessWidget {
-  @override
-  Widget build(BuildContext context)
-  {
-    // Fetch and display data for Tab 1 here
-    return ListView(
-      children: [
-        // List items or other content
-      ],
-    );
-  }
-}
-
-class Tab2Content extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Fetch and display data for Tab 2 here
-    return ListView(
-      children: [
-        // List items or other content
-      ],
-    );
-  }
-}
-
-class Tab3Content extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Fetch and display data for Tab 3 here
-    return Center(
-      child: Text('Tab 3 Content'),
-    );
-  }
-}
 Widget buildIcon() {
   return backgroundColor == isitdark
       ? Icon(Icons.dark_mode, color: Colors.white)
@@ -57,14 +23,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
+    //hena al this beydy error ma3rf4 leh
+   // TabController _tabController = TabController(length: 3, vsync: this);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MovieMania",
       themeMode: backgroundColor == isitdark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: Colors.black38, useMaterial3: true),
+
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -89,7 +59,9 @@ class _MyAppState extends State<MyApp> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text("Trending"),
               ),
-              SizedBox(height: 3,),
+              SizedBox(
+                height: 3,
+              ),
               SizedBox(
                 width: double.infinity,
                 child: CarouselSlider.builder(
@@ -123,18 +95,15 @@ class _MyAppState extends State<MyApp> {
                 indent: 10,
                 endIndent: 10,
               ),
-              DefaultTabController(
-                length: 3, // Number of tabs
-                child: TabBar(
-                  tabs: [
-                    Tab(text: "Tab 1"),
-                    Tab(text: "Tab 2"),
-                    Tab(text: "Tab 3"),
-                  ],
-                ),
-
+             //m4 3ayza tozbot fe mo4kela fe tabcontroller
+             /** Container(
+                child: TabBar(controller: _tabController, tabs: [Text("data"),Text("data1"),Text("data2")]),
               ),
+              Container(
+                child: TabBarView(controller: _tabController, children: [Text("data"),Text("data1"),Text("data2")]),
+              )
 
+              **/
 
             ],
           ),
