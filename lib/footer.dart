@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviemania/screen/WatchListPage.dart';
 
 import 'package:moviemania/screen/search.dart';
 
@@ -30,15 +31,15 @@ class _FooterState extends State<Footer> {
     case 1:
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => search()),
+    MaterialPageRoute(builder: (context) => SearchPage()),
     );
     break;
-    /*case 2:
+    case 2:
     Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => WatchListPage()), // Replace with your WatchListPage widget
     );
-    break;*/
+    break;
     }
   }
 
@@ -51,6 +52,7 @@ class _FooterState extends State<Footer> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+
 
           ),
           BottomNavigationBarItem(
@@ -66,6 +68,7 @@ class _FooterState extends State<Footer> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blueAccent, // Adjust color as desired
         onTap: _onItemTapped,
+
       ),
     );
   }
