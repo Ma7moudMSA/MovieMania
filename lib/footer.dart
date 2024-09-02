@@ -1,7 +1,47 @@
 import 'package:flutter/material.dart';
 
-class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+import 'package:moviemania/screen/search.dart';
+
+import 'main.dart';
+
+class Footer extends StatefulWidget {
+   Footer({Key? key}) : super(key: key);
+
+  @override
+  State<Footer> createState() => _FooterState();
+}
+
+class _FooterState extends State<Footer> {
+  int _selectedIndex = 0;
+ // Track the currently selected index
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigate to the corresponding page based on the selected index
+    switch (index) {
+    case
+    0:
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MyApp()), // Replace with your HomePage widget
+    );
+    break;
+    case 1:
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => search()), // Replace with your SearchPage widget
+    );
+    break;
+    /*case 2:
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => WatchListPage()), // Replace with your WatchListPage widget
+    );
+    break;*/
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +52,7 @@ class Footer extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
@@ -23,6 +64,9 @@ class Footer extends StatelessWidget {
           ),
 
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blueAccent, // Adjust color as desired
+        onTap: _onItemTapped,
       ),
     );
   }

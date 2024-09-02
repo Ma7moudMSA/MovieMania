@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: const Footer(),
+        bottomNavigationBar:  Footer(),
       ),
     );
   }
