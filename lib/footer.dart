@@ -13,25 +13,24 @@ class Footer extends StatefulWidget {
 
 class _FooterState extends State<Footer> {
   int _selectedIndex = 0;
- // Track the currently selected index
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    // Navigate to the corresponding page based on the selected index
+
     switch (index) {
     case
     0:
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => MyApp()), // Replace with your HomePage widget
+    MaterialPageRoute(builder: (context) => MyApp()),
     );
     break;
     case 1:
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => search()), // Replace with your SearchPage widget
+    MaterialPageRoute(builder: (context) => search()),
     );
     break;
     /*case 2:
