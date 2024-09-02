@@ -5,13 +5,24 @@ import 'footer.dart';
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
 
+Widget buildIcon() {
+  return backgroundColor == isitdark
+      ? Icon(Icons.dark_mode, color: Colors.white)
+      : Icon(Icons.dark_mode, color: Colors.black45);
+}
+
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,6 +36,16 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Center(child: Text("Moviemania")),
+          leading: GestureDetector(
+            onTap: () {
+              setState(() {
+                isitdark = !isitdark;
+
+              });
+              print('Icon tapped!');
+            },
+            child: buildIcon(),
+          ),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
