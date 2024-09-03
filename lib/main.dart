@@ -23,6 +23,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List<String> genres=[
+    'horror',
+    'sci-fi',
+    'thrillers',
+    'animated',
+    'romance'
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +59,9 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         body: SingleChildScrollView(
+
           physics: const BouncingScrollPhysics(),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -88,13 +98,67 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
-              Divider(
-                color: Colors.black12,
-                height: 20,
-                thickness: 2,
-                indent: 10,
-                endIndent: 10,
-              ),
+              SizedBox(height: 32,),
+             Text("Comedy"),
+             SizedBox(
+               height: 200,
+               width:double.infinity ,
+               child: ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 physics: BouncingScrollPhysics(),
+                 itemCount: 8,
+                 itemBuilder: (context,index){
+                   return Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: ClipRRect(
+                         borderRadius: BorderRadius.circular(8),
+                         child: Container(color:Colors.yellow ,height: 200,width:200 )),
+                   );
+                 },
+
+               ),
+             ),
+              SizedBox(height: 32,),
+              Text("sci-fi"),
+             SizedBox(
+               height: 200,
+               width:double.infinity ,
+               child: ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 physics: BouncingScrollPhysics(),
+                 itemCount: 8,
+                 itemBuilder: (context,index){
+                   return Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: ClipRRect(
+                         borderRadius: BorderRadius.circular(8),
+                         child: Container(color:Colors.yellow ,height: 200,width:200 )),
+                   );
+                 },
+
+               ),
+             ),
+              SizedBox(height: 32,),
+              Text("horror"),
+             SizedBox(
+               height: 200,
+               width:double.infinity ,
+               child: ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 physics: BouncingScrollPhysics(),
+                 itemCount: 8,
+                 itemBuilder: (context,index){
+                   return Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: ClipRRect(
+                       borderRadius: BorderRadius.circular(8),
+                         child: Container(color:Colors.yellow ,height: 200,width:200, )),
+                   );
+                 },
+
+               ),
+             ),
+
              //m4 3ayza tozbot fe mo4kela fe tabcontroller
              /** Container(
                 child: TabBar(controller: _tabController, tabs: [Text("data"),Text("data1"),Text("data2")]),
@@ -105,9 +169,9 @@ class _MyAppState extends State<MyApp> {
 
               **/
 
-            ],
-          ),
+        ],
         ),
+    ),
         bottomNavigationBar: Footer(),
       ),
     );

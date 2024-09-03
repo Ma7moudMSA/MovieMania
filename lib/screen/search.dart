@@ -17,7 +17,6 @@ class _SearchPageState extends State<SearchPage> {
     });
 
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +39,8 @@ class _SearchPageState extends State<SearchPage> {
             const SizedBox(height: 20.0),
             // Display search results here (replace with your logic)
             Text(_searchText.isEmpty ? 'Search for a movie...' : 'Searching...'),
+            const SizedBox(height: 20.0),
+
           ],
         ),
       ),
