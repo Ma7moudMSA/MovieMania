@@ -72,27 +72,25 @@ class _SearchPageState extends State<SearchPage> {
             ),
             const SizedBox(height: 10.0),
             // Display search results here (replace with your logic)
-        Column( // Wrap ListView.builder in a Column
-          children: [
-            ListView.builder(
-              shrinkWrap: true, // Prevent excessive scrolling
-              itemCount: _filteredImages.length,
-              itemBuilder: (context, index) {
-                final image = _filteredImages[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                    image,
-                    fit: BoxFit.cover,
-                    height: 100, // Adjust image height as needed
-                    ),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true, // Prevent excessive scrolling
+            itemCount: _filteredImages.length,
+            itemBuilder: (context, index) {
+              final image = _filteredImages[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                  height: 100, // Adjust image height as needed
                   ),
-                );
-              },
-            ),
-          ],
+                ),
+              );
+            },
+          ),
         ),
         ],
         ),

@@ -13,6 +13,7 @@ Widget buildIcon() {
       : Icon(Icons.dark_mode, color: Colors.black45);
 }
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -25,19 +26,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<String> genres=[
-    'horror',
-    'sci-fi',
-    'thrillers',
-    'animated',
-    'romance'
 
-  ];
 
   @override
   Widget build(BuildContext context) {
-    //hena al this beydy error ma3rf4 leh
-   // TabController _tabController = TabController(length: 3, vsync: this);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MovieMania",
@@ -95,15 +87,6 @@ class _MyAppState extends State<MyApp> {
               ),
              MovieSlider(),
 
-             //m4 3ayza tozbot fe mo4kela fe tabcontroller
-             /** Container(
-                child: TabBar(controller: _tabController, tabs: [Text("data"),Text("data1"),Text("data2")]),
-              ),
-              Container(
-                child: TabBarView(controller: _tabController, children: [Text("data"),Text("data1"),Text("data2")]),
-              )
-
-              **/
 
         ],
         ),
