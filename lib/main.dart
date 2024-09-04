@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'footer.dart';
+import 'Widgets/MovieSlider.dart';
+import 'Widgets/TrendingMovies.dart';
 
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
@@ -72,112 +74,25 @@ class _MyAppState extends State<MyApp> {
               SizedBox(
                 height: 3,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: CarouselSlider.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, itemIndex, pageViewIndex) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        height: 300,
-                        width: 200,
-                        color: Colors.yellow,
-                      ),
-                    );
-                  },
-                  options: CarouselOptions(
-                    //aspectRatio: 16/9
-                    height: 300,
-                    autoPlay: true,
-                    viewportFraction: 0.55,
-                    enlargeCenterPage: true,
-                    pageSnapping: true,
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    autoPlayAnimationDuration: const Duration(seconds: 2),
-                  ),
-                ),
+              TrendingMovies(),
+              SizedBox(height: 32,),
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Text("Comedy"),
+             ),
+              MovieSlider(),
+              SizedBox(height: 32,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Sci-fi"),
               ),
+              MovieSlider(),
               SizedBox(height: 32,),
-             Text("Comedy"),
-             SizedBox(
-               height: 200,
-               width:double.infinity ,
-               child: ListView.builder(
-                 scrollDirection: Axis.horizontal,
-                 physics: BouncingScrollPhysics(),
-                 itemCount: 8,
-                 itemBuilder: (context,index){
-                   return Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: ClipRRect(
-                         borderRadius: BorderRadius.circular(8),
-                         child: Container(color:Colors.yellow ,height: 200,width:200 )),
-                   );
-                 },
-
-               ),
-             ),
-              SizedBox(height: 32,),
-              Text("sci-fi"),
-             SizedBox(
-               height: 200,
-               width:double.infinity ,
-               child: ListView.builder(
-                 scrollDirection: Axis.horizontal,
-                 physics: BouncingScrollPhysics(),
-                 itemCount: 8,
-                 itemBuilder: (context,index){
-                   return Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: ClipRRect(
-                         borderRadius: BorderRadius.circular(8),
-                         child: Container(color:Colors.yellow ,height: 200,width:200 )),
-                   );
-                 },
-
-               ),
-             ),
-              SizedBox(height: 32,),
-              Text("horror"),
-             SizedBox(
-               height: 200,
-               width:double.infinity ,
-               child: ListView.builder(
-                 scrollDirection: Axis.horizontal,
-                 physics: BouncingScrollPhysics(),
-                 itemCount: 8,
-                 itemBuilder: (context,index){
-                   return Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: ClipRRect(
-                       borderRadius: BorderRadius.circular(8),
-                         child: Container(color:Colors.yellow ,height: 200,width:200, )),
-                   );
-                 },
-
-               ),
-             ),
-              SizedBox(height: 32,),
-              Text("thriller",),
-             SizedBox(
-               height: 200,
-               width:double.infinity ,
-               child: ListView.builder(
-                 scrollDirection: Axis.horizontal,
-                 physics: BouncingScrollPhysics(),
-                 itemCount: 8,
-                 itemBuilder: (context,index){
-                   return Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: ClipRRect(
-                       borderRadius: BorderRadius.circular(8),
-                         child: Container(color:Colors.yellow ,height: 200,width:200, )),
-                   );
-                 },
-
-               ),
-             ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Horror"),
+              ),
+             MovieSlider(),
 
              //m4 3ayza tozbot fe mo4kela fe tabcontroller
              /** Container(
@@ -197,3 +112,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+
