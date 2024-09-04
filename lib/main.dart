@@ -76,13 +76,22 @@ class _MyAppState extends State<MyApp> {
               ),
               TrendingMovies(),
               SizedBox(height: 32,),
-             Text("Comedy"),
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Text("Comedy"),
+             ),
               MovieSlider(),
               SizedBox(height: 32,),
-              Text("Sci-fi"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Sci-fi"),
+              ),
               MovieSlider(),
               SizedBox(height: 32,),
-              Text("Horror"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Horror"),
+              ),
              MovieSlider(),
 
              //m4 3ayza tozbot fe mo4kela fe tabcontroller
