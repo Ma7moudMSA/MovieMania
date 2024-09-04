@@ -158,6 +158,26 @@ class _MyAppState extends State<MyApp> {
 
                ),
              ),
+              SizedBox(height: 32,),
+              Text("thriller",),
+             SizedBox(
+               height: 200,
+               width:double.infinity ,
+               child: ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 physics: BouncingScrollPhysics(),
+                 itemCount: 8,
+                 itemBuilder: (context,index){
+                   return Padding(
+                     padding: const EdgeInsets.all(8.0),
+                     child: ClipRRect(
+                       borderRadius: BorderRadius.circular(8),
+                         child: Container(color:Colors.yellow ,height: 200,width:200, )),
+                   );
+                 },
+
+               ),
+             ),
 
              //m4 3ayza tozbot fe mo4kela fe tabcontroller
              /** Container(
