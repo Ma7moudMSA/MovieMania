@@ -9,7 +9,7 @@ bool isitdark = false;
 
 Widget buildIcon() {
   return backgroundColor == isitdark
-      ? Icon(Icons.dark_mode, color: Colors.white)
+      ? Icon(Icons.dark_mode, color: Colors.white,)
       : Icon(Icons.dark_mode, color: Colors.black45);
 }
 
@@ -43,7 +43,8 @@ class _MyAppState extends State<MyApp> {
       title: "MovieMania",
       themeMode: backgroundColor == isitdark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Colors.black38, useMaterial3: true),
+          scaffoldBackgroundColor: Colors.black38, useMaterial3: true,
+      ),
 
       home: Scaffold(
         appBar: AppBar(

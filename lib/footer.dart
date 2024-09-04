@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:moviemania/main.dart';
+
 import 'package:moviemania/screen/WatchListPage.dart';
 
 import 'package:moviemania/screen/search.dart';
 
-import 'main.dart';
+
 
 class Footer extends StatefulWidget {
    Footer({Key? key}) : super(key: key);
@@ -66,7 +68,7 @@ class _FooterState extends State<Footer> {
 
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent, // Adjust color as desired
+        selectedItemColor: Colors.blueGrey[700], // Adjust color as desired
         onTap: _onItemTapped,
 
       ),

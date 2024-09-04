@@ -1,30 +1,40 @@
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class TrendingMovies extends StatelessWidget {
-  const TrendingMovies({
+   TrendingMovies({
     super.key,
   });
+
+  final List<String> images = [
+    'asset/action.jpeg',
+    'asset/animated.jpeg',
+    'asset/carton.jpeg',
+    'asset/horror.jpeg',
+    'asset/marvel.jpeg',
+    'asset/romance.jpeg',
+    'asset/sci-fi.jpeg',
+    'asset/thrillier.jpeg',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: CarouselSlider.builder(
-        itemCount: 10,
+        itemCount: images.length,
         itemBuilder: (context, itemIndex, pageViewIndex) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Container(
-              height: 300,
-              width: 200,
-              color: Colors.yellow,
+            child: Image.asset(
+              images[itemIndex],
+              fit: BoxFit.cover,
+              height: 100,
+
             ),
           );
         },
         options: CarouselOptions(
-          //aspectRatio: 16/9
           height: 300,
           autoPlay: true,
           viewportFraction: 0.55,
