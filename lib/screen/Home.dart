@@ -43,13 +43,14 @@ class _HomeState extends State<Home> {
           elevation: 0,
           title: Center(child: Text("Moviemania")),
           leading: GestureDetector(
+
             onTap: () {
               setState(() {
                 isitdark = !isitdark;
               });
-              print('Icon tapped!');
             },
             child: buildIcon(),
+
           ),
         ),
         body: SingleChildScrollView(

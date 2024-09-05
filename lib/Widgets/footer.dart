@@ -3,13 +3,14 @@ import 'package:moviemania/main.dart';
 import 'package:moviemania/screen/Home.dart';
 
 import 'package:moviemania/screen/favouriteList.dart';
+import 'package:moviemania/screen/profile.dart';
 
 import 'package:moviemania/screen/search.dart';
 
 
 
 class Footer extends StatefulWidget {
-   Footer({Key? key}) : super(key: key);
+  Footer({Key? key}) : super(key: key);
 
   @override
   State<Footer> createState() => _FooterState();
@@ -24,25 +25,32 @@ class _FooterState extends State<Footer> {
 
 
     switch (index) {
-    case
-    0:
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Home()),
-    );
-    break;
-    case 1:
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => SearchPage()),
-    );
-    break;
-    case 2:
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => favouriteList()), // Replace with your WatchListPage widget
-    );
-    break;
+      case
+      0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => favouriteList()), // Replace with your WatchListPage widget
+        );
+        break;
+      case 3:
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context)=>profile()),
+
+        );
+        break;
     }
   }
 
@@ -53,7 +61,7 @@ class _FooterState extends State<Footer> {
       child: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
 
 
@@ -66,11 +74,16 @@ class _FooterState extends State<Footer> {
             icon: Icon(Icons.favorite_border),
             label: 'Favourite List',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'profile',
+          ),
 
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueGrey[700], // Adjust color as desired
+        selectedItemColor: Colors.orange[200], // Adjust color as desired
         onTap: _onItemTapped,
+        unselectedItemColor: Colors.orange,
 
       ),
     );
