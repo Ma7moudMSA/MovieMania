@@ -1,11 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:moviemania/Widgets/Constants.dart';
+import 'package:moviemania/Models/Movie.dart';
 
 class TrendingMovies extends StatelessWidget {
-   TrendingMovies({
+  TrendingMovies({
     super.key,
+    required this.snapshot,
   });
 
+  final AsyncSnapshot snapshot;
+
+  /*
   final List<String> images = [
     'asset/action.jpeg',
     'asset/animated.jpeg',
@@ -16,23 +23,35 @@ class TrendingMovies extends StatelessWidget {
     'asset/sci-fi.jpeg',
     'asset/thrillier.jpeg',
   ];
-
+*/
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: CarouselSlider.builder(
-        itemCount: images.length,
+        itemCount: 10,
         itemBuilder: (context, itemIndex, pageViewIndex) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
+              borderRadius: BorderRadius.circular(12),
+              child: SizedBox(
+                height: 300,
+                width: 200,
+                child: Image.network(
+                  filterQuality: FilterQuality.high,
+                  fit:BoxFit.cover,
+                    '${Constants.imagePath}${snapshot.data[itemIndex].posterPath}',
+
+                ),
+              )
+              /*Image.asset(
               images[itemIndex],
               fit: BoxFit.cover,
               height: 100,
 
             ),
-          );
+            */
+
+              );
         },
         options: CarouselOptions(
           height: 300,
