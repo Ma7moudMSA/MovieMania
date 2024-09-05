@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../footer.dart';
+import '../Widgets/footer.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);

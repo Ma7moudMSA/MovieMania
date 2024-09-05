@@ -32,30 +32,11 @@ class MovieSlider extends StatelessWidget {
      padding: const EdgeInsets.all(8.0),
      child: ClipRRect(
      borderRadius: BorderRadius.circular(8),
-     child: Stack(
-     children:
-     [
-     Image.asset(
+     child: Image.asset(
      images[index],
      fit: BoxFit.cover,
      height: 200,
      width: 200,
-     ),
-     Positioned(
-     bottom: 5,
-     right: 0,
-     child: IconButton(
-       alignment: Alignment.bottomRight,
-
-      onPressed: (){
-
-      },
-       icon: Icon(Icons.bookmark_border,size: 30,color: Colors.white,),
-
-
-     ),
-     ),
-     ],
      ),
      ),
      );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moviemania/login.dart';
+import 'package:moviemania/main.dart';
+import 'package:moviemania/screen/Home.dart';
 
-import 'package:moviemania/screen/WatchListPage.dart';
+import 'package:moviemania/screen/favouriteList.dart';
 
 import 'package:moviemania/screen/search.dart';
 
@@ -27,7 +28,7 @@ class _FooterState extends State<Footer> {
     0:
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => MyApp()),
+    MaterialPageRoute(builder: (context) => Home()),
     );
     break;
     case 1:
@@ -39,7 +40,7 @@ class _FooterState extends State<Footer> {
     case 2:
     Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => WatchListPage()), // Replace with your WatchListPage widget
+    MaterialPageRoute(builder: (context) => favouriteList()), // Replace with your WatchListPage widget
     );
     break;
     }
@@ -62,8 +63,8 @@ class _FooterState extends State<Footer> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Watch List',
+            icon: Icon(Icons.favorite_border),
+            label: 'Favourite List',
           ),
 
         ],

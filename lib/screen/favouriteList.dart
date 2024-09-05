@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../footer.dart';
+import '../Widgets/footer.dart';
 
-class WatchListPage extends StatelessWidget {
+class favouriteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
