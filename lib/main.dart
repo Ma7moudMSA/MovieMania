@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: Home(),
       /*routes: {
         "home": (context)=> Home(),
         "search": (context)=>SearchPage(),

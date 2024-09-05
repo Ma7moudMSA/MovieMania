@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:moviemania/screen/login.dart';
 import '../Widgets/MovieSlider.dart';
 import '../Widgets/TrendingMovies.dart';
 import '../Widgets/footer.dart';
@@ -52,6 +53,11 @@ class _HomeState extends State<Home> {
             child: buildIcon(),
 
           ),
+          actions: [
+            IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+            }, icon: Icon(Icons.output)),
+          ],
         ),
         body: SingleChildScrollView(
 
