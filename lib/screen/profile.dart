@@ -2,12 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/footer.dart';
 
+import 'login.dart';
+
 class profile extends StatelessWidget {
   const profile({super.key});
 
   @override
   Widget build(BuildContext context) {
         return Scaffold(
+          appBar: AppBar(
+            title: Text('Profile'),
+            leading: Container(),
+            leadingWidth: 0,
+            actions: [
+              IconButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+              }, icon: Icon(Icons.output)),
+            ],
+          ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -26,15 +38,30 @@ class profile extends StatelessWidget {
             SizedBox(height: 50,),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.deepOrange,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(0, 5),
+                          color: Colors.white.withOpacity(.2),
+                          spreadRadius: 5,
+                          blurRadius: 10
+                      )
+                    ]
+                ),
+                child: ElevatedButton(
 
-                  onPressed: (){},
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(15),
-                    backgroundColor: Colors.deepOrange,
-                  ),
-                  child: Text("Edit ",style: TextStyle(color: Colors.white),
-                  ),
+                    onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(15),
+                      backgroundColor: Colors.deepOrange,
+
+                    ),
+                    child: Text("Edit ",style: TextStyle(color: Colors.white),
+                    ),
+                ),
               ),
             ),
           ],
@@ -52,15 +79,15 @@ class profile extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 5),
-                color: Colors.deepOrange.withOpacity(.2),
+                color: Colors.deepOrange.withOpacity(.4),
                 spreadRadius: 5,
                 blurRadius: 10
             )
           ]
       ),
       child: ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
+        title: Text(title,style: TextStyle(color: Colors.black),),
+        subtitle: Text(subtitle,style: TextStyle(color: Colors.black)),
         leading: Icon(iconData),
         trailing: Icon(Icons.arrow_forward,color: Colors.grey,),
         tileColor:Colors.white ,

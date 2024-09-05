@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Widgets/footer.dart';
+import 'login.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -36,6 +37,11 @@ class _SearchPageState extends State<SearchPage> {
 
         leading: Container(),
         leadingWidth: 0,
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+          }, icon: Icon(Icons.output)),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
