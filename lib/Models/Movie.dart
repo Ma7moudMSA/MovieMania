@@ -112,6 +112,7 @@ enum OriginalLanguage {
   TH,
   CN,
   FR,
+  HI,
 }
 
 final originalLanguageValues = EnumValues({
@@ -122,6 +123,8 @@ final originalLanguageValues = EnumValues({
   "th": OriginalLanguage.TH,
   "cn": OriginalLanguage.CN,
   "fr": OriginalLanguage.FR,
+  "hi": OriginalLanguage.HI,
+
 
 });
 

@@ -121,6 +121,11 @@ class _HomeState extends State<Home> {
                     }),
               ),
               // TrendingMovies(),
+              Heading(headingText: "Now Playing"),
+              SliderGallery(nowplayingmovies),
+              SizedBox(
+                height: 32,
+              ),
               Heading(headingText: "Comedy"),
               //MovieSlider(),
              SliderGallery(comedyMovies),
