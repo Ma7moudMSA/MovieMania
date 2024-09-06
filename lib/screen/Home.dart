@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/api.dart';
+import 'package:moviemania/Widgets/page%20footer.dart';
 import 'package:moviemania/screen/login.dart';
 import '../Models/Movie.dart';
 import '../Widgets/MovieSlider.dart';
@@ -95,7 +96,7 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             Heading(headingText: "Trending"),
+              Heading(headingText: "Trending"),
               SizedBox(
                 height: 3,
               ),
@@ -128,7 +129,7 @@ class _HomeState extends State<Home> {
               ),
               Heading(headingText: "Comedy"),
               //MovieSlider(),
-             SliderGallery(comedyMovies),
+              SliderGallery(comedyMovies),
               SizedBox(
                 height: 32,
               ),
@@ -141,11 +142,13 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 32,
               ),
-             Heading(headingText: "Horror"),
+              Heading(headingText: "Horror"),
               SliderGallery(horrorMovies),
               //SliderGallery(genre)
-              
+
               //MovieSlider(),
+              //Divider(color: Colors.black,height: 1,),
+              pageFooter(),
             ],
           ),
         ),
@@ -154,29 +157,27 @@ class _HomeState extends State<Home> {
     );
   }
 
-
-
   SizedBox SliderGallery(Future<List<Movie>> genre) {
     return SizedBox(
-              child: FutureBuilder(
-                  future: genre,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text(snapshot.error.toString()),
-                      );
-                    } else if (snapshot.hasData) {
-                      //List<Movie> movielist = [];
-                      //final data = snapshot.data;
-                      return MovieSlider(
-                        snapshot: snapshot,
-                      );
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }),
-            );
+      child: FutureBuilder(
+          future: genre,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else if (snapshot.hasData) {
+              //List<Movie> movielist = [];
+              //final data = snapshot.data;
+              return MovieSlider(
+                snapshot: snapshot,
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
+    );
   }
 }
