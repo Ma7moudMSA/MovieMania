@@ -36,7 +36,7 @@ class profile extends StatelessWidget {
             SizedBox(height: 20,),
             itemProfile("email", "mariem2004.mn@gmail.com", CupertinoIcons.mail),
             SizedBox(height: 50,),
-            SizedBox(
+            /*SizedBox(
               width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(
@@ -63,7 +63,7 @@ class profile extends StatelessWidget {
                     ),
                 ),
               ),
-            ),
+            ),*/
           ],
         ),
       ),

@@ -78,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             const SizedBox(height: 10.0),
             // Display search results here (replace with your logic)
-        Expanded(
+        /*Expanded(
           child: ListView.builder(
             shrinkWrap: true, // Prevent excessive scrolling
             itemCount: _filteredImages.length,
@@ -97,7 +97,7 @@ class _SearchPageState extends State<SearchPage> {
               );
             },
           ),
-        ),
+        ),*/
         ],
         ),
       ),
