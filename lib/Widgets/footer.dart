@@ -81,9 +81,9 @@ class _FooterState extends State<Footer> {
 
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.orange[200], // Adjust color as desired
+        selectedItemColor: Color(0xFF5f0004), // Adjust color as desired
         onTap: _onItemTapped,
-        unselectedItemColor: Colors.orange,
+        unselectedItemColor: Color(0xFFb22226),
 
       ),
     );

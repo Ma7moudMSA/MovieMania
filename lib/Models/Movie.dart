@@ -109,7 +109,9 @@ enum OriginalLanguage {
   ES,
   KO,
   PT,
-  TH
+  TH,
+  CN,
+  FR,
 }
 
 final originalLanguageValues = EnumValues({
@@ -117,7 +119,9 @@ final originalLanguageValues = EnumValues({
   "es": OriginalLanguage.ES,
   "ko": OriginalLanguage.KO,
   "pt": OriginalLanguage.PT,
-  "th": OriginalLanguage.TH
+  "th": OriginalLanguage.TH,
+  "cn": OriginalLanguage.CN,
+  "fr": OriginalLanguage.FR,
 
 });
 
