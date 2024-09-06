@@ -7,6 +7,9 @@ import 'package:moviemania/Models/Movie.dart';
 class Api{
 
   static const _trendingURL = 'https://api.themoviedb.org/3/trending/movie/day?api_key=${Constants.apiKey}';
+  static const _genreURL = 'https://api.themoviedb.org/3/discover/movie?api_key=${Constants.apiKey}';
+  static const _nowplaying = 'https://api.themoviedb.org/3/movie/now_playing?api_key=${Constants.apiKey}';
+
 
   Future<List<Movie>> getTrendingMovies() async {
     final responses = await http.get(Uri.parse(_trendingURL));
@@ -19,6 +22,28 @@ class Api{
       {
         throw Exception('yarab ostor');
       }
+  }
+
+  Future<List<Movie>> getGenreMovies(int genreId) async {
+    final url = Uri.parse('$_genreURL&with_genres=$genreId'); // Add genre ID parameter
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List;
+      print('decoded data');
+      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to fetch movies by genre');
+    }
+  }Future<List<Movie>> getNowPlayingMovies() async {
+    final url = Uri.parse('$_nowplaying'); // Add genre ID parameter
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List;
+      print('decoded data');
+      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to fetch movies by genre');
+    }
   }
 
 }

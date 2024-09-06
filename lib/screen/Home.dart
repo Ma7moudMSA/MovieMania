@@ -6,9 +6,12 @@ import '../Models/Movie.dart';
 import '../Widgets/MovieSlider.dart';
 import '../Widgets/TrendingMovies.dart';
 import '../Widgets/footer.dart';
+import 'package:flutter/material.dart';
+import 'package:svg_flutter/svg_flutter.dart';
 
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
+
 
 Widget buildIcon() {
   return backgroundColor == isitdark
@@ -28,11 +31,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late Future<List<Movie>> trendingMovies;
+  late Future<List<Movie>> comedyMovies;
+  late Future<List<Movie>> nowplayingmovies;
 
   @override
   void initState() {
     super.initState();
     trendingMovies = Api().getTrendingMovies();
+    comedyMovies= Api().getGenreMovies(35);
+    nowplayingmovies= Api().getNowPlayingMovies();
+
   }
 
   @override
@@ -49,7 +57,11 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Center(child: Text("Moviemania")),
+          title:
+             //SvgPicture.asset('asset/MovieMania.svg',height: 30,fit: BoxFit.cover,),
+            Image.asset('asset/MovieMania.png', fit: BoxFit.cover,height: 30,filterQuality: FilterQuality.high,),
+
+//Center(child: Text("Moviemania")),
           leading: GestureDetector(
             onTap: () {
               setState(() {
@@ -104,7 +116,24 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text("Comedy"),
               ),
-              MovieSlider(),
+              //MovieSlider(),
+              SizedBox(
+                child: FutureBuilder(
+                    future: nowplayingmovies,
+                    builder: (context, snapshot) {
+                      if(snapshot.hasError){
+                        return Center(child: Text(snapshot.error.toString()),);
+                      }
+                      else if(snapshot.hasData){
+                        //List<Movie> movielist = [];
+                        //final data = snapshot.data;
+                        return  MovieSlider(snapshot: snapshot,);
+                      }
+                      else{
+                        return Center(child: CircularProgressIndicator(),);
+                      }
+                    }),
+              ),
               SizedBox(
                 height: 32,
               ),
@@ -112,7 +141,24 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text("Sci-fi"),
               ),
-              MovieSlider(),
+              //MovieSlider(),
+              SizedBox(
+                child: FutureBuilder(
+                    future: comedyMovies,
+                    builder: (context, snapshot) {
+                      if(snapshot.hasError){
+                        return Center(child: Text(snapshot.error.toString()),);
+                      }
+                      else if(snapshot.hasData){
+                        //List<Movie> movielist = [];
+                        //final data = snapshot.data;
+                        return  MovieSlider(snapshot: snapshot,);
+                      }
+                      else{
+                        return Center(child: CircularProgressIndicator(),);
+                      }
+                    }),
+              ),
               SizedBox(
                 height: 32,
               ),
@@ -120,7 +166,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text("Horror"),
               ),
-              MovieSlider(),
+              //MovieSlider(),
             ],
           ),
         ),

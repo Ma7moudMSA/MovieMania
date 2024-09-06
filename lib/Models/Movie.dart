@@ -37,91 +37,85 @@ class Welcome {
 }
 
 class Movie {
+  bool adult;
   String backdropPath;
+  List<int> genreIds;
   int id;
-  String title;
+  OriginalLanguage originalLanguage;
   String originalTitle;
   String overview;
-  String posterPath;
-  MediaType mediaType;
-  bool adult;
-  OriginalLanguage originalLanguage;
-  List<int> genreIds;
   double popularity;
+  String posterPath;
   DateTime releaseDate;
+  String title;
   bool video;
   double voteAverage;
   int voteCount;
 
   Movie({
+    required this.adult,
     required this.backdropPath,
+    required this.genreIds,
     required this.id,
-    required this.title,
+    required this.originalLanguage,
     required this.originalTitle,
     required this.overview,
-    required this.posterPath,
-    required this.mediaType,
-    required this.adult,
-    required this.originalLanguage,
-    required this.genreIds,
     required this.popularity,
+    required this.posterPath,
     required this.releaseDate,
+    required this.title,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
+    adult: json["adult"],
     backdropPath: json["backdrop_path"],
+    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
-    title: json["title"],
+    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
     originalTitle: json["original_title"],
     overview: json["overview"],
-    posterPath: json["poster_path"],
-    mediaType: mediaTypeValues.map[json["media_type"]]!,
-    adult: json["adult"],
-    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     popularity: json["popularity"]?.toDouble(),
+    posterPath: json["poster_path"],
     releaseDate: DateTime.parse(json["release_date"]),
+    title: json["title"],
     video: json["video"],
     voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
   );
 
   Map<String, dynamic> toJson() => {
+    "adult": adult,
     "backdrop_path": backdropPath,
+    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "id": id,
-    "title": title,
+    "original_language": originalLanguageValues.reverse[originalLanguage],
     "original_title": originalTitle,
     "overview": overview,
-    "poster_path": posterPath,
-    "media_type": mediaTypeValues.reverse[mediaType],
-    "adult": adult,
-    "original_language": originalLanguageValues.reverse[originalLanguage],
-    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "popularity": popularity,
+    "poster_path": posterPath,
     "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "title": title,
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
 }
 
-enum MediaType {
-  MOVIE
-}
-
-final mediaTypeValues = EnumValues({
-  "movie": MediaType.MOVIE
-});
-
 enum OriginalLanguage {
-  EN
+  EN,
+  ES,
+  KO,
+  PT
 }
 
 final originalLanguageValues = EnumValues({
-  "en": OriginalLanguage.EN
+  "en": OriginalLanguage.EN,
+  "es": OriginalLanguage.ES,
+  "ko": OriginalLanguage.KO,
+  "pt": OriginalLanguage.PT
 });
 
 class EnumValues<T> {
@@ -135,41 +129,3 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
-
-
-
-/*
-class Movie {
-  String Title;
-  String backDroptPath;
-  String originalTitle;
-  String overview;
-  String PosterPath;
-  String ReleaseDate;
-  String voteAverage;
-
-  Movie({
-    required this.backDroptPath,
-    required this.originalTitle,
-    required this.overview,
-    required this.PosterPath,
-    required this.ReleaseDate,
-    required this.Title,
-    required this.voteAverage,
-});
-  factory Movie.fromJson(Map<String,dynamic> json ){
-    return Movie(backDroptPath: json["backdrop_path"],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
-        PosterPath: json["poster_path"],
-        ReleaseDate: json["release_date"],
-        Title: json["title"],
-        voteAverage: json["vote_average"]);
-  }
-
-  
-}
-
-*/
-
-//"page":1,"results":[{"backdrop_path":"/qr69tjjXcZLKjqD48aAq6FzBjf9.jpg","id":1032823,"title":"Trap","original_title":"Trap","overview":"A father and teen daughter attend a pop concert, where they realize they're at the center of a dark and sinister event.","poster_path":"/jwoaKYVqPgYemFpaANL941EF94R.jpg","media_type":"movie","adult":false,"original_language":"en"

@@ -29,7 +29,7 @@ class TrendingMovies extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: CarouselSlider.builder(
-        itemCount: 10,
+        itemCount: snapshot.data!.length ,
         itemBuilder: (context, itemIndex, pageViewIndex) {
           return ClipRRect(
               borderRadius: BorderRadius.circular(12),
