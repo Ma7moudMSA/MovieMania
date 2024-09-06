@@ -13,13 +13,16 @@ class Heading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      headingText,  // Use the string passed to this widget
-      style: TextStyle(
-        fontSize: 22,               // Font size for the heading
-        fontWeight: FontWeight.bold, // Bold text for emphasis
-        color: backgroundColor == isitdark ? Colors.white70 : Colors.black87,  // Dynamic color based on theme
-        letterSpacing: 1.2,          // Add spacing between letters for a cinematic feel
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        headingText,  // Use the string passed to this widget
+        style: TextStyle(
+          fontSize: 22,               // Font size for the heading
+          fontWeight: FontWeight.bold, // Bold text for emphasis
+          color: backgroundColor == isitdark ? Colors.white70 : Colors.black87,  // Dynamic color based on theme
+          letterSpacing: 1.2,          // Add spacing between letters for a cinematic feel
+        ),
       ),
     );
   }

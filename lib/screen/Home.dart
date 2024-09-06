@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/api.dart';
+import 'package:moviemania/Widgets/page%20footer.dart';
 import 'package:moviemania/screen/login.dart';
 import '../Models/Movie.dart';
 import '../Widgets/MovieSlider.dart';
@@ -13,7 +14,6 @@ import 'Heading.dart';
 
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
-
 
 Widget buildIcon() {
   return backgroundColor == isitdark
@@ -35,16 +35,17 @@ class _HomeState extends State<Home> {
   late Future<List<Movie>> trendingMovies;
   late Future<List<Movie>> comedyMovies;
   late Future<List<Movie>> scifiMovies;
+  late Future<List<Movie>> horrorMovies;
   late Future<List<Movie>> nowplayingmovies;
 
   @override
   void initState() {
     super.initState();
     trendingMovies = Api().getTrendingMovies();
-    comedyMovies= Api().getGenreMovies(35);
-    scifiMovies= Api().getGenreMovies(878);
-    nowplayingmovies= Api().getNowPlayingMovies();
-
+    comedyMovies = Api().getGenreMovies(35);
+    scifiMovies = Api().getGenreMovies(878);
+    horrorMovies = Api().getGenreMovies(27);
+    nowplayingmovies = Api().getNowPlayingMovies();
   }
 
   @override
@@ -63,8 +64,14 @@ class _HomeState extends State<Home> {
           elevation: 0,
           title:
 
-            // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
-            Center(child: Image.asset('asset/MovieMania.webp', fit: BoxFit.cover,height: 300,filterQuality: FilterQuality.high,)),
+              // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
+              Center(
+                  child: Image.asset(
+            'asset/MovieMania.webp',
+            fit: BoxFit.cover,
+            height: 300,
+            filterQuality: FilterQuality.high,
+          )),
 
 //Center(child: Text("Moviemania")),
           leading: GestureDetector(
@@ -89,56 +96,40 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Heading(headingText: "Trending",),
-              ),
+              Heading(headingText: "Trending"),
               SizedBox(
                 height: 3,
               ),
-               SizedBox(
+              SizedBox(
                 child: FutureBuilder(
                     future: trendingMovies,
                     builder: (context, snapshot) {
-                      if(snapshot.hasError){
-                        return Center(child: Text(snapshot.error.toString()),);
-                      }
-                      else if(snapshot.hasData){
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
                         //List<Movie> movielist = [];
                         //final data = snapshot.data;
-                        return  TrendingMovies(snapshot: snapshot,);
-                      }
-                      else{
-                        return Center(child: CircularProgressIndicator(),);
+                        return TrendingMovies(
+                          snapshot: snapshot,
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
                     }),
               ),
               // TrendingMovies(),
+              Heading(headingText: "Now Playing"),
+              SliderGallery(nowplayingmovies),
               SizedBox(
                 height: 32,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Heading(headingText: "Comedy"),
-              ),
+              Heading(headingText: "Comedy"),
               //MovieSlider(),
-              SizedBox(
-                child: FutureBuilder(
-                    future: comedyMovies,
-                    builder: (context, snapshot) {
-                      if(snapshot.hasError){
-                        return Center(child: Text(snapshot.error.toString()),);
-                      }
-                      else if(snapshot.hasData){
-                        //List<Movie> movielist = [];
-                        //final data = snapshot.data;
-                        return  MovieSlider(snapshot: snapshot,);
-                      }
-                      else{
-                        return Center(child: CircularProgressIndicator(),);
-                      }
-                    }),
-              ),
+              SliderGallery(comedyMovies),
               SizedBox(
                 height: 32,
               ),
@@ -147,36 +138,46 @@ class _HomeState extends State<Home> {
                 child: Heading(headingText: "Sci-fi"),
               ),
               //MovieSlider(),
-              SizedBox(
-                child: FutureBuilder(
-                    future: scifiMovies,
-                    builder: (context, snapshot) {
-                      if(snapshot.hasError){
-                        return Center(child: Text(snapshot.error.toString()),);
-                      }
-                      else if(snapshot.hasData){
-                        //List<Movie> movielist = [];
-                        //final data = snapshot.data;
-                        return  MovieSlider(snapshot: snapshot,);
-                      }
-                      else{
-                        return Center(child: CircularProgressIndicator(),);
-                      }
-                    }),
-              ),
+              SliderGallery(scifiMovies),
               SizedBox(
                 height: 32,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Horror"),
-              ),
+              Heading(headingText: "Horror"),
+              SliderGallery(horrorMovies),
+              //SliderGallery(genre)
+
               //MovieSlider(),
+              //Divider(color: Colors.black,height: 1,),
+              pageFooter(),
             ],
           ),
         ),
         bottomNavigationBar: Footer(),
       ),
+    );
+  }
+
+  SizedBox SliderGallery(Future<List<Movie>> genre) {
+    return SizedBox(
+      child: FutureBuilder(
+          future: genre,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error.toString()),
+              );
+            } else if (snapshot.hasData) {
+              //List<Movie> movielist = [];
+              //final data = snapshot.data;
+              return MovieSlider(
+                snapshot: snapshot,
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }
