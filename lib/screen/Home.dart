@@ -9,6 +9,8 @@ import '../Widgets/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
+import 'Heading.dart';
+
 bool backgroundColor = true; // 1 for dark theme, 0 for light theme
 bool isitdark = false;
 
@@ -32,6 +34,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late Future<List<Movie>> trendingMovies;
   late Future<List<Movie>> comedyMovies;
+  late Future<List<Movie>> scifiMovies;
   late Future<List<Movie>> nowplayingmovies;
 
   @override
@@ -39,6 +42,7 @@ class _HomeState extends State<Home> {
     super.initState();
     trendingMovies = Api().getTrendingMovies();
     comedyMovies= Api().getGenreMovies(35);
+    scifiMovies= Api().getGenreMovies(878);
     nowplayingmovies= Api().getNowPlayingMovies();
 
   }
@@ -58,8 +62,9 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title:
-             //SvgPicture.asset('asset/MovieMania.svg',height: 30,fit: BoxFit.cover,),
-            Image.asset('asset/MovieMania.png', fit: BoxFit.cover,height: 30,filterQuality: FilterQuality.high,),
+
+            // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
+            Center(child: Image.asset('asset/MovieMania.webp', fit: BoxFit.cover,height: 300,filterQuality: FilterQuality.high,)),
 
 //Center(child: Text("Moviemania")),
           leading: GestureDetector(
@@ -86,7 +91,7 @@ class _HomeState extends State<Home> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Trending"),
+                child: Heading(headingText: "Trending",),
               ),
               SizedBox(
                 height: 3,
@@ -114,12 +119,12 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Comedy"),
+                child: Heading(headingText: "Comedy"),
               ),
               //MovieSlider(),
               SizedBox(
                 child: FutureBuilder(
-                    future: nowplayingmovies,
+                    future: comedyMovies,
                     builder: (context, snapshot) {
                       if(snapshot.hasError){
                         return Center(child: Text(snapshot.error.toString()),);
@@ -139,12 +144,12 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Sci-fi"),
+                child: Heading(headingText: "Sci-fi"),
               ),
               //MovieSlider(),
               SizedBox(
                 child: FutureBuilder(
-                    future: comedyMovies,
+                    future: scifiMovies,
                     builder: (context, snapshot) {
                       if(snapshot.hasError){
                         return Center(child: Text(snapshot.error.toString()),);
