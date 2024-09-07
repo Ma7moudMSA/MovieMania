@@ -1,12 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/footer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
-class profile extends StatelessWidget {
+class profile extends StatefulWidget {
   const profile({super.key});
 
+  @override
+  State<profile> createState() => _profileState();
+}
+
+class _profileState extends State<profile> {
+  var name='';
+  var email='';
+  var password='';
+
+  @override
+  void initState(){
+    getSavedData();
+    super.initState();
+  }
+  getSavedData()async{
+    final prefs=await SharedPreferences.getInstance();
+    name=prefs.getString('Name')!;
+    email=prefs.getString('Email')!;
+    password=prefs.getString('password')!;
+    setState(() {
+
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
         return Scaffold(
@@ -30,11 +55,11 @@ class profile extends StatelessWidget {
               backgroundImage: AssetImage('asset/person.jpg'),
             ),
             SizedBox(height: 20,),
-            itemProfile("Name", "Mariem", CupertinoIcons.person),
+            itemProfile("Name", name, CupertinoIcons.person),
             SizedBox(height: 20,),
-            itemProfile("phone", "01069105250", CupertinoIcons.phone),
+            itemProfile("email", email, CupertinoIcons.mail),
             SizedBox(height: 20,),
-            itemProfile("email", "mariem2004.mn@gmail.com", CupertinoIcons.mail),
+            itemProfile("password", password, CupertinoIcons.mail),
             SizedBox(height: 50,),
             /*SizedBox(
               width: double.infinity,
@@ -71,6 +96,7 @@ class profile extends StatelessWidget {
 
     );
   }
+
   itemProfile(String title,String subtitle,IconData iconData){
     return Container(
       decoration: BoxDecoration(
