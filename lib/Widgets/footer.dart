@@ -59,7 +59,7 @@ class _FooterState extends State<Footer> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: BottomNavigationBar(
-        showUnselectedLabels: true,
+        //showUnselectedLabels: true,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
