@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:moviemania/Widgets/Constants.dart';
 import 'package:moviemania/Models/Movie.dart';
-import 'package:moviemania/Widgets/DetailsScreen.dart';
+import 'package:moviemania/screen/DetailsScreen.dart';
 
 class TrendingMovies extends StatelessWidget {
   TrendingMovies({

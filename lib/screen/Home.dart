@@ -18,9 +18,9 @@ bool isitdark = false;
 Widget buildIcon() {
   return backgroundColor == isitdark
       ? Icon(
-          Icons.dark_mode,
-          color: Colors.white,
-        )
+    Icons.dark_mode,
+    color: Colors.white,
+  )
       : Icon(Icons.dark_mode, color: Colors.black45);
 }
 
@@ -64,14 +64,14 @@ class _HomeState extends State<Home> {
           elevation: 0,
           title:
 
-              // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
-              Center(
-                  child: Image.asset(
-            'asset/MovieMania.webp',
-            fit: BoxFit.cover,
-            height: 300,
-            filterQuality: FilterQuality.high,
-          )),
+          // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
+          Center(
+              child: Image.asset(
+                'asset/MovieMania.webp',
+                fit: BoxFit.cover,
+                height: 300,
+                filterQuality: FilterQuality.high,
+              )),
 
 //Center(child: Text("Moviemania")),
           leading: GestureDetector(

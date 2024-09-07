@@ -11,11 +11,7 @@ class favouriteList extends StatelessWidget {
           title: Text('Favourite list'),
           leading: Container(),
           leadingWidth: 0,
-          actions: [
-            IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
-            }, icon: Icon(Icons.output)),
-          ],
+
         ),
 
 
