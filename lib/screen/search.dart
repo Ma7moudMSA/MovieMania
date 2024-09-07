@@ -70,6 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                   : GridView.builder(
                       itemCount: searchModel?.results.length,
                       shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           mainAxisSpacing: 15,
@@ -78,17 +79,20 @@ class _SearchPageState extends State<SearchPage> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            Image.network(
-                              '${Constants.imagePath}${searchModel!.results[index].backdropPath}',
-                              height: 170,
-                            ),
+                            searchModel!.results[index].posterPath == null
+                                ? Image.asset("asset/MovieMania.png",height: 170,)
+                                : Image.network(
+                                    '${Constants.imagePath}${searchModel!.results[index].posterPath}',
+                                    height: 170,
+                                  ),
                             SizedBox(
-                                child: Text(
-                                  "${searchModel!.results[index].originalTitle}",style: TextStyle(fontSize: 14),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              width:100 ,
+                              child: Text(
+                                "${searchModel!.results[index].originalTitle}",
+                                style: TextStyle(fontSize: 14),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              width: 100,
                             )
                           ],
                         );
