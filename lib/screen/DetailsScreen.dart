@@ -107,7 +107,7 @@ class DetailsScreen extends StatelessWidget {
                           'Rating',
                           style: TextStyle(fontSize: 17),
                         ),
-                       Icon(Icons.),
+                      // Icon(Icons.),
                       ],
                     ),
                   )
