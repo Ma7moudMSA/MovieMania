@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:moviemania/Models/Movie.dart';
+import 'package:moviemania/screen/favouriteList.dart';
 import 'Home.dart';
 import 'Heading.dart';
 import 'package:moviemania/Widgets/Constants.dart';
@@ -58,7 +59,7 @@ class DetailsScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 5,),
-                  IconToggleButton(),
+                  IconToggleButton(movie: movie,),
 
                 ],
               ),
@@ -176,16 +177,22 @@ class DetailsScreen extends StatelessWidget {
 
 
 
-class IconToggleButton extends StatefulWidget {
-  @override
-  _IconToggleButtonState createState() => _IconToggleButtonState();
+ class IconToggleButton extends StatefulWidget {
+   final Movie movie;
+
+   IconToggleButton({required this.movie});
+
+   @override
+   _IconToggleButtonState createState() => _IconToggleButtonState(movie: movie);
 }
 
 class _IconToggleButtonState extends State<IconToggleButton> {
   bool _isIconToggled = false; // Track whether the icon is toggled or not
   static bool _isFavourite =false;
-  //final Movie movie;
-  _IconToggleButtonState();
+  final Movie movie;
+  FavMovies favMovies = FavMovies();
+
+  _IconToggleButtonState({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -200,13 +207,14 @@ class _IconToggleButtonState extends State<IconToggleButton> {
           !_isIconToggled; // Change the state to toggle the icon
         });
         // Update the favouriteList in the Movie object
-        /*if (_isFavourite) {
-          movie.favouriteList.add(movie.id); // Add ID if favourited
+        if (_isFavourite) {
+          favMovies.addToFavourite(movie.id);
+          print('added to fav');
 
         } else {
-          movie.favouriteList.remove(movie.id); // Remove ID if unfavourited
-
-        }*/
+          favMovies.removeFromFavourite(movie.id);
+          print('removed from fav');
+        }
       },
       color: _isIconToggled
           ? Colors.red

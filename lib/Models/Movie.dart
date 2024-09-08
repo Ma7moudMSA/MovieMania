@@ -37,6 +37,8 @@ class Welcome {
 }
 
 class Movie {
+
+
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -51,7 +53,6 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
-  late List<int> favouriteList;
 
   Movie({
     required this.adult,
@@ -69,6 +70,7 @@ class Movie {
     required this.voteAverage,
     required this.voteCount,
   });
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     try {
       return Movie(
@@ -128,6 +130,7 @@ class Movie {
         voteCount: 0,
       );
     }
+
   }
 
 /*
@@ -203,5 +206,24 @@ class EnumValues<T> {
   Map<T, String> get reverse {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
+  }
+}
+class FavMovies {
+  // A static list that can be modified
+  static List<int> favouriteList = [];
+
+  // Add a movie ID to the favourites
+  void addToFavourite(int movieId) {
+    favouriteList.add(movieId);
+  }
+
+  // Remove a movie ID from the favourites
+  void removeFromFavourite(int movieId) {
+    favouriteList.remove(movieId);
+  }
+
+  // Access the current favourite list
+  static List<int> getFavourites() {
+    return favouriteList;
   }
 }
