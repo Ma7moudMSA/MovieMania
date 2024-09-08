@@ -20,7 +20,7 @@ class Heading extends StatelessWidget {
         style: TextStyle(
           fontSize: 22,               // Font size for the heading
           fontWeight: FontWeight.bold, // Bold text for emphasis
-          color: backgroundColor == isitdark ? Colors.white70 : Colors.black87,  // Dynamic color based on theme
+          color: BackgroundColour.backgroundColor == BackgroundColour.isitdark ? Colors.white70 : Colors.black87,  // Dynamic color based on theme
           letterSpacing: 1.2,          // Add spacing between letters for a cinematic feel
         ),
       ),

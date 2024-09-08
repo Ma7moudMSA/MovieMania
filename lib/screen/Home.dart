@@ -11,12 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
 import 'Heading.dart';
-
-bool backgroundColor = true; // 1 for dark theme, 0 for light theme
-bool isitdark = false;
+class BackgroundColour {
+  static bool backgroundColor = true; // 1 for dark theme, 0 for light theme
+  static  bool isitdark = false;
+}
 
 Widget buildIcon() {
-  return backgroundColor == isitdark
+  return BackgroundColour.backgroundColor == BackgroundColour.isitdark
       ? Icon(
     Icons.dark_mode,
     color: Colors.white,
@@ -53,7 +54,7 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MovieMania",
-      themeMode: backgroundColor == isitdark ? ThemeMode.dark : ThemeMode.light,
+      themeMode: BackgroundColour.backgroundColor == BackgroundColour.isitdark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.black38,
         useMaterial3: true,
@@ -77,7 +78,7 @@ class _HomeState extends State<Home> {
           leading: GestureDetector(
             onTap: () {
               setState(() {
-                isitdark = !isitdark;
+                BackgroundColour.isitdark = !BackgroundColour.isitdark;
               });
             },
             child: buildIcon(),

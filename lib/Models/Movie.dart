@@ -68,13 +68,75 @@ class Movie {
     required this.voteAverage,
     required this.voteCount,
   });
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    try {
+      return Movie(
+        adult: json["adult"] ?? false, // Default to false if not present
+        backdropPath: json["backdrop_path"] ?? "", // Default to empty string
+        genreIds: List<int>.from(json["genre_ids"]?.map((x) => x)), // Handle null
+        id: json["id"], // Required field, will throw exception if missing
+        originalLanguage: originalLanguageValues.map[json["original_language"]] ?? OriginalLanguage.NA,
+        originalTitle: json["original_title"] ?? "", // Default to empty string
+        overview: json["overview"] ?? "", // Default to empty string
+        popularity: json["popularity"]?.toDouble(), // Handle null
+        posterPath: json["poster_path"] ?? "", // Default to empty string
+        releaseDate: DateTime.tryParse(json["release_date"]) ?? DateTime.now(), // Handle invalid format or missing date
+        title: json["title"] ?? "", // Default to empty string
+        video: json["video"] ?? false, // Default to false if not present
+        voteAverage: json["vote_average"]?.toDouble(), // Handle null
+        voteCount: json["vote_count"] ?? 0, // Default to 0 if not present
+      );
+    } on FormatException catch (e) {
+      // Handle format exception (e.g., invalid date format)
+      print("Error parsing JSON: $e");
+      // You can return a default Movie object or throw a custom exception here
+      return Movie(
+        adult: false,
+        backdropPath: "",
+        genreIds: [],
+        id: 0,
+        originalLanguage: OriginalLanguage.NA,
+        originalTitle: "Unknown",
+        overview: "N/A",
+        popularity: 0,
+        posterPath: "",
+        releaseDate: DateTime.now(),
+        title: "Unknown",
+        video: false,
+        voteAverage: 0,
+        voteCount: 0,
+      );
+    } catch (e) {
+      // Handle other exceptions (e.g., missing required field)
+      print("Unexpected error parsing JSON: $e");
+      // You can return a default Movie object or throw a custom exception here
+      return Movie(
+        adult: false,
+        backdropPath: "",
+        genreIds: [],
+        id: 0,
+        originalLanguage: OriginalLanguage.NA,
+        originalTitle: "Unknown",
+        overview: "N/A",
+        popularity: 0,
+        posterPath: "",
+        releaseDate: DateTime.now(),
+        title: "Unknown",
+        video: false,
+        voteAverage: 0,
+        voteCount: 0,
+      );
+    }
+  }
 
+/*
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
-    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
+    originalLanguage: originalLanguageValues.map[json["original_language"]] ?? OriginalLanguage.NA,
+    //originalLanguage: originalLanguageValues.map[json["original_language"]]!,
     originalTitle: json["original_title"],
     overview: json["overview"],
     popularity: json["popularity"]?.toDouble(),
@@ -85,6 +147,7 @@ class Movie {
     voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
   );
+*/
 
   Map<String, dynamic> toJson() => {
     "adult": adult,
@@ -113,6 +176,7 @@ enum OriginalLanguage {
   CN,
   FR,
   HI,
+  NA
 }
 
 final originalLanguageValues = EnumValues({
@@ -124,6 +188,7 @@ final originalLanguageValues = EnumValues({
   "cn": OriginalLanguage.CN,
   "fr": OriginalLanguage.FR,
   "hi": OriginalLanguage.HI,
+  "N/A": OriginalLanguage.NA,
 
 
 });
