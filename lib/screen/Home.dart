@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:moviemania/Widgets/api.dart';
 import 'package:moviemania/Widgets/page%20footer.dart';
 import 'package:moviemania/screen/login.dart';
+import 'package:moviemania/screen/splash_screen.dart';
 import '../Models/Movie.dart';
 import '../Widgets/MovieSlider.dart';
 import '../Widgets/TrendingMovies.dart';
@@ -88,12 +89,14 @@ class _HomeState extends State<Home> {
             child: buildIcon(),
           ),
           actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => login()));
-                },
-                icon: Icon(Icons.output)),
+            Row(
+              children: [
+                MaterialButton(
+                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));},
+                  child: Text("create account",style: TextStyle(color:  Color(0xff420516),fontSize: 14,fontWeight: FontWeight.bold),),
+                )
+              ],
+            )
           ],
         ),
         body: SingleChildScrollView(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/footer.dart';
+import 'package:moviemania/screen/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
@@ -39,11 +40,6 @@ class _profileState extends State<profile> {
             title: Text('Profile'),
             leading: Container(),
             leadingWidth: 0,
-            actions: [
-              IconButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
-              }, icon: Icon(Icons.output)),
-            ],
           ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -54,41 +50,24 @@ class _profileState extends State<profile> {
               radius: 70,
               backgroundImage: AssetImage('asset/person.jpg'),
             ),
+            SizedBox(height: 10,),
+            Text("Info"),
             SizedBox(height: 20,),
             itemProfile("Name", name, CupertinoIcons.person),
             SizedBox(height: 20,),
             itemProfile("email", email, CupertinoIcons.mail),
             SizedBox(height: 20,),
             itemProfile("password", password, CupertinoIcons.mail),
-            SizedBox(height: 50,),
-            /*SizedBox(
-              width: double.infinity,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0, 5),
-                          color: Colors.white.withOpacity(.2),
-                          spreadRadius: 5,
-                          blurRadius: 10
-                      )
-                    ]
-                ),
-                child: ElevatedButton(
+            SizedBox(height:20),
 
-                    onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(15),
-                      backgroundColor: Colors.deepOrange,
+           ElevatedButton(
+               style: ElevatedButton.styleFrom(
+                   backgroundColor: Color(0xff420516)
+               ),
+               onPressed: (){
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>SplashScreen()));
+           }, child: Text("logout",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),))
 
-                    ),
-                    child: Text("Edit ",style: TextStyle(color: Colors.white),
-                    ),
-                ),
-              ),
-            ),*/
           ],
         ),
       ),
@@ -104,10 +83,10 @@ class _profileState extends State<profile> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 5),
-                color: Colors.deepOrange.withOpacity(.4),
-                spreadRadius: 5,
-                blurRadius: 10
+              color: Color.fromRGBO(255, 5, 27, .3),
+              blurRadius: 20,
+              offset: Offset(0, 10),
+
             )
           ]
       ),

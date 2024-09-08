@@ -59,7 +59,6 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 5,),
                   IconToggleButton(),
-
                 ],
               ),
               background: ClipRRect(
