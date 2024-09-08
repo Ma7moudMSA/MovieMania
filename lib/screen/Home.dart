@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:moviemania/Widgets/api.dart';
 import 'package:moviemania/Widgets/page%20footer.dart';
 import 'package:moviemania/screen/login.dart';
@@ -11,17 +12,18 @@ import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
 import 'Heading.dart';
+
 class BackgroundColour {
   static bool backgroundColor = true; // 1 for dark theme, 0 for light theme
-  static  bool isitdark = false;
+  static bool isitdark = false;
 }
 
 Widget buildIcon() {
   return BackgroundColour.backgroundColor == BackgroundColour.isitdark
       ? Icon(
-    Icons.dark_mode,
-    color: Colors.white,
-  )
+          Icons.dark_mode,
+          color: Colors.white,
+        )
       : Icon(Icons.dark_mode, color: Colors.black45);
 }
 
@@ -54,7 +56,9 @@ class _HomeState extends State<Home> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MovieMania",
-      themeMode: BackgroundColour.backgroundColor == BackgroundColour.isitdark ? ThemeMode.dark : ThemeMode.light,
+      themeMode: BackgroundColour.backgroundColor == BackgroundColour.isitdark
+          ? ThemeMode.dark
+          : ThemeMode.light,
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.black38,
         useMaterial3: true,
@@ -65,14 +69,14 @@ class _HomeState extends State<Home> {
           elevation: 0,
           title:
 
-          // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
-          Center(
-              child: Image.asset(
-                'asset/MovieMania.webp',
-                fit: BoxFit.cover,
-                height: 300,
-                filterQuality: FilterQuality.high,
-              )),
+              // SvgPicture.asset("asset/MovieMania.svg",height: 100,fit: BoxFit.cover,),
+              Center(
+                  child: Image.asset(
+            'asset/MovieMania.webp',
+            fit: BoxFit.cover,
+            height: 300,
+            filterQuality: FilterQuality.high,
+          )),
 
 //Center(child: Text("Moviemania")),
           leading: GestureDetector(

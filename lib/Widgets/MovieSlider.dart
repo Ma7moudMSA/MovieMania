@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../screen/DetailsScreen.dart';
 import 'Constants.dart';
 
 class MovieSlider extends StatelessWidget {
@@ -35,16 +36,25 @@ class MovieSlider extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: SizedBox(
-                child: Image.network(
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
-                  '${Constants.imagePath}${snapshot.data[index].posterPath}',
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailsScreen(movie: snapshot.data[index])));
+                },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  child: Image.network(
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                    '${Constants.imagePath}${snapshot.data[index].posterPath}',
+                  ),
+                  height: 200,
+                  width: 200,
                 ),
-                height: 200,
-                width: 200,
               ),
             ),
           );

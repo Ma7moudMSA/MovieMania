@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:moviemania/Models/Movie.dart';
 import 'Home.dart';
 import 'Heading.dart';
 import 'package:moviemania/Widgets/Constants.dart';
 
+import 'package:moviemania/Widgets/api.dart';
+
+
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key, required this.movie});
 
-  final Movie movie;
+   final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +20,7 @@ class DetailsScreen extends StatelessWidget {
         slivers: [
           // Use SliverAppBar.large for background image and title
           SliverAppBar.large(
+            pinned: true,
             leading: Container(
               height: 70,
               width: 70,
@@ -39,16 +44,23 @@ class DetailsScreen extends StatelessWidget {
             expandedHeight: 500,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                movie.title,
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                  color: BackgroundColour.backgroundColor ==
-                          BackgroundColour.isitdark
-                      ? Color(0xFFffffff)
-                      : Color(0xFF5f0004), // Dynamic color based on theme
-                ),
+              title: Row(
+                children: [
+                  Text(
+                    movie.title,
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: BackgroundColour.backgroundColor ==
+                              BackgroundColour.isitdark
+                          ? Color(0xFFffffff)
+                          : Color(0xFF5f0004), // Dynamic color based on theme
+                    ),
+                  ),
+                  SizedBox(width: 5,),
+                  IconToggleButton(),
+
+                ],
               ),
               background: ClipRRect(
                 child: Image.network(
@@ -88,6 +100,8 @@ class DetailsScreen extends StatelessWidget {
                     movie.overview,
                     textAlign: TextAlign.justify,
                   ),
+                  //Text('dsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssss'),
+                  //Text('dsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsssssssssssssssssss'),
                   // Add more detail widgets (release date, genre, etc.)
                   SizedBox(
                     height: 18,
@@ -100,16 +114,55 @@ class DetailsScreen extends StatelessWidget {
                               BackgroundColour.isitdark
                           ? Colors.white
                           : Colors.black,
-                    )),
+
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+
+                    ),
                     child: Row(
                       children: [
                         Text(
                           'Rating',
                           style: TextStyle(fontSize: 17),
                         ),
-                      // Icon(Icons.),
+                        const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        Text('${movie.voteAverage.toStringAsFixed(1)}/10'),
+
                       ],
                     ),
+
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: BackgroundColour.backgroundColor ==
+                              BackgroundColour.isitdark
+                          ? Colors.white
+                          : Colors.black,
+
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Release Date ',
+                          style: TextStyle(fontSize: 17,),
+                        ),
+                        Text(
+                          movie.releaseDate.toString().substring(0, 10), // Display only the first 10 characters
+                          style: TextStyle(fontSize: 17),
+                        ),
+
+                      ],
+                    ),
+
                   )
                 ],
               ),
@@ -117,6 +170,47 @@ class DetailsScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+
+
+class IconToggleButton extends StatefulWidget {
+  @override
+  _IconToggleButtonState createState() => _IconToggleButtonState();
+}
+
+class _IconToggleButtonState extends State<IconToggleButton> {
+  bool _isIconToggled = false; // Track whether the icon is toggled or not
+  static bool _isFavourite =false;
+  //final Movie movie;
+  _IconToggleButtonState();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(_isIconToggled
+          ? FontAwesomeIcons.solidHeart
+          : FontAwesomeIcons.heart), // Toggle icon
+      onPressed: () {
+        setState(() {
+          _isFavourite=!_isFavourite;
+          _isIconToggled =
+          !_isIconToggled; // Change the state to toggle the icon
+        });
+        // Update the favouriteList in the Movie object
+        /*if (_isFavourite) {
+          movie.favouriteList.add(movie.id); // Add ID if favourited
+
+        } else {
+          movie.favouriteList.remove(movie.id); // Remove ID if unfavourited
+
+        }*/
+      },
+      color: _isIconToggled
+          ? Colors.red
+          : Colors.grey, // Optional: Change color too
     );
   }
 }
