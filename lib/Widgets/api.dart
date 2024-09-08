@@ -37,7 +37,20 @@ class Api{
     } else {
       throw Exception('Failed to fetch movies by genre');
     }
-  }Future<List<Movie>> getNowPlayingMovies() async {
+  }
+
+  Future<List<Movie>> getMoviebyID(List<int> movieIds) async {
+    final url = 'https://api.themoviedb.org/3/movie/${movieIds.join(',')}/?api_key=${Constants.apiKey}';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(response.body)['results'] as List;
+      print('decoded data');
+      return decodedData.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to fetch movies by ID');
+    }
+  }
+  Future<List<Movie>> getNowPlayingMovies() async {
     final url = Uri.parse('$_nowplaying'); // Add genre ID parameter
     final response = await http.get(url);
     if (response.statusCode == 200) {

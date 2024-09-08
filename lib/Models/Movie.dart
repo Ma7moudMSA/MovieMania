@@ -51,6 +51,7 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
+  late List<int> favouriteList;
 
   Movie({
     required this.adult,
