@@ -6,6 +6,8 @@ import 'package:moviemania/Widgets/Constants.dart';
 import 'package:http/http.dart' as http ;
 import 'package:moviemania/Models/Movie.dart';
 
+import '../Models/idmovie.dart';
+
 class Api{
 
   static const _trendingURL = 'https://api.themoviedb.org/3/trending/movie/day?api_key=${Constants.apiKey}';
@@ -39,7 +41,7 @@ class Api{
     }
   }
 
-  Future<List<Movie>> getMoviebyID(List<int> movieIds) async {
+  Future<List<Movie>> getMoviesbyID(List<int> movieIds) async {
     final url = 'https://api.themoviedb.org/3/movie/${movieIds.join(',')}/?api_key=${Constants.apiKey}';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -47,7 +49,20 @@ class Api{
       print('decoded data');
       return decodedData.map((movie) => Movie.fromJson(movie)).toList();
     } else {
-      throw Exception('Failed to fetch movies by ID');
+
+      throw Exception('Failed to fetch movies by ID ${url}');
+    }
+
+  }
+  Future<idclass> getMovieById(int movieId) async {
+    final url = 'https://api.themoviedb.org/3/movie/$movieId?api_key=YOUR_API_KEY';
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final movieData = json.decode(response.body);
+      return idclass.fromJson(movieData);
+    } else {
+      throw Exception('Failed to fetch movie with ID $movieId');
     }
   }
   Future<List<Movie>> getNowPlayingMovies() async {

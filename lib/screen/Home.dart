@@ -5,6 +5,7 @@ import 'package:moviemania/Widgets/api.dart';
 import 'package:moviemania/Widgets/page%20footer.dart';
 import 'package:moviemania/screen/login.dart';
 import '../Models/Movie.dart';
+import '../Models/idmovie.dart';
 import '../Widgets/MovieSlider.dart';
 import '../Widgets/TrendingMovies.dart';
 import '../Widgets/footer.dart';
