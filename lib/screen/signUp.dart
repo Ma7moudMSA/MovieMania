@@ -14,23 +14,24 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-  final FireBaseService _auth=FireBaseService();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController nameController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
-  void dispose(){
+  void dispose() {
     emailController.dispose();
     nameController.dispose();
     passwordController.dispose();
     super.dispose();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Color(0XFFE65100),
+        backgroundColor: Color(0xff191919),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Container(
@@ -39,14 +40,10 @@ class _signupState extends State<signup> {
         height: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              colors: [
-                Color(0XFFE65100),
-                Color(0xffEF6C00),
-                Color(0xffffA726),
-
-              ],
-            )
+              colors: [Color(0xff420516), Color(0xff191919)],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+            ),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -84,7 +81,7 @@ class _signupState extends State<signup> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                color: Color.fromRGBO(225, 95, 27, .3),
+                                color: Color.fromRGBO(255, 5, 27, .3),
                                 blurRadius: 20,
                                 offset: Offset(0, 10),
 
@@ -97,7 +94,7 @@ class _signupState extends State<signup> {
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 border: Border(bottom: BorderSide(
-                                    color: Color(0xffEEEEEE))),
+                                    color: Color(0xff420516))),
                               ),
                               child: TextFormField(
                                 controller: nameController,
@@ -114,7 +111,7 @@ class _signupState extends State<signup> {
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 border: Border(bottom: BorderSide(
-                                    color: Color(0xffEEEEEE))),
+                                    color: Color(0xff420516))),
                               ),
                               child: TextFormField(
                                 controller: emailController,
@@ -132,7 +129,7 @@ class _signupState extends State<signup> {
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 border: Border(bottom: BorderSide(
-                                    color: Color(0xffEEEEEE))),
+                                    color: Color(0xff420516))),
                               ),
                               child: TextFormField(
                                 controller: passwordController,
@@ -150,23 +147,21 @@ class _signupState extends State<signup> {
                         ),
                       ),
                       SizedBox(height: 40,),
-                     GestureDetector(
-                       onTap: _signUp,
-                       child: Container(
-                         width: double.infinity,
-                         height: 45,
-                         decoration: BoxDecoration(
-                           color: Colors.deepOrange,
-                           borderRadius: BorderRadius.circular(10),
-                         ),
-                         child: Text(
-                           "SignUp",
-                           style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
-                         ),
-                       ),
-                     ),
-                      SizedBox(height: 50,),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xff420516)
+                        ),
+                          onPressed: ()async{
+                            FocusScope.of(context).unfocus();
+                            final prefs=await SharedPreferences.getInstance();
+                            await prefs.setString('Name', nameController.text);
+                            await prefs.setString('Email', emailController.text);
+                            await prefs.setString('password', passwordController.text);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>profile()));
 
+                          },
+                          child: Text("SignUp",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18),)),
+                      SizedBox(height: 50,),
 
 
                     ],
@@ -179,9 +174,8 @@ class _signupState extends State<signup> {
         ),
       ),
     );
-
   }
-  void _signUp()async{
+/*  void _signUp()async{
     String username=nameController.text;
     String email=emailController.text;
     String password=passwordController.text;
@@ -194,5 +188,5 @@ class _signupState extends State<signup> {
     else {
       print("some error happend");
     }
-  }
+  }*/
 }

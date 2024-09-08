@@ -101,14 +101,11 @@ class DetailsScreen extends StatelessWidget {
                           ? Colors.white
                           : Colors.black,
                     )),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Rating',
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      // Icon(Icons.),
-                      ],
+                    child: Container(
+                      child: Text(
+                        'Rate ${movie.voteAverage}',
+                        style: TextStyle(fontSize: 17),
+                      ),
                     ),
                   )
                 ],

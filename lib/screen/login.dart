@@ -16,6 +16,10 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff191919),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 30),
@@ -23,14 +27,10 @@ class _loginState extends State<login> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin:Alignment.topCenter ,
-                colors: [
-                  Color(0XFFE65100),
-                  Color(0xffEF6C00),
-                  Color(0xffffA726),
-        
-                ],
-            )
+              colors: [Color(0xff420516), Color(0xff191919)],
+              begin: Alignment.bottomRight,
+              end: Alignment.topLeft,
+            ),
           ),
           child: SingleChildScrollView(
             child: Column(
@@ -65,14 +65,14 @@ class _loginState extends State<login> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(225,95, 27, .3),
-                                blurRadius: 20,
-                                offset: Offset(0, 10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromRGBO(255, 5, 27, .3),
+                                  blurRadius: 20,
+                                  offset: Offset(0, 10),
 
-                              )
-                            ]
+                                )
+                              ]
                           ),
                           child: Column(
                             children: [
@@ -130,7 +130,7 @@ class _loginState extends State<login> {
                           margin:EdgeInsets.symmetric(horizontal: 50) ,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Color(0XFFE65100),
+                            color: Color(0xff420516),
                           ),
                           child: Center(
                             child: MaterialButton(
