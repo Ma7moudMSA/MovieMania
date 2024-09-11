@@ -41,6 +41,11 @@ class _HomeState extends State<Home> {
   late Future<List<Movie>> scifiMovies;
   late Future<List<Movie>> horrorMovies;
   late Future<List<Movie>> nowplayingmovies;
+  late Future<List<Movie>> idmovies;
+  late Future<idclass> favmovie;
+  List<String> movieTitles = ['Inception', 'The Dark Knight', 'Interstellar'];
+  List<int> Ids = [27205, 155, 157336];
+
 
   @override
   void initState() {
@@ -50,6 +55,9 @@ class _HomeState extends State<Home> {
     scifiMovies = Api().getGenreMovies(878);
     horrorMovies = Api().getGenreMovies(27);
     nowplayingmovies = Api().getNowPlayingMovies();
+    favmovie = Api().getMovieById(646097);
+    idmovies =Api().fetchMoviesByIds(Ids);
+
   }
 
   @override
@@ -108,7 +116,8 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(
                 child: FutureBuilder(
-                    future: trendingMovies,
+                    future://idmovies,
+                    trendingMovies,
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(

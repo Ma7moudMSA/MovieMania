@@ -8,6 +8,9 @@ import 'package:moviemania/Widgets/api.dart';
 import '../Widgets/footer.dart';
 import 'login.dart';
 
+
+
+
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
 
@@ -17,6 +20,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   TextEditingController searchController = TextEditingController();
+  late Future<List<Movie>> searchmovies;
   Api api = Api();
   SearchModel? searchModel;
 
@@ -105,3 +109,4 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+

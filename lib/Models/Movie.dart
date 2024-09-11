@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
 
 String welcomeToJson(Welcome data) => json.encode(data.toJson());
@@ -35,10 +37,8 @@ class Welcome {
     "total_results": totalResults,
   };
 }
-
 class Movie {
-
-
+  bool isFavourite;
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -69,7 +69,41 @@ class Movie {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.isFavourite = false,
   });
+  // Method to save 'isFavourite' status locally
+  Future<void> saveFavouriteStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isFavourite_$id', isFavourite);  // Save using movie id as key
+    print('save is runned succesfuly');
+  //  print('is favourite is ${isFavourite}');
+
+  }
+  void toggleFavourite(Movie movie) {
+   // print('is favourite was ${movie.isFavourite}');
+    movie.isFavourite = !movie.isFavourite;
+   // print('is favourite is ${movie.isFavourite}');
+
+    movie.saveFavouriteStatus();
+  }
+
+// When initializing or refreshing the data
+  void initializeMovie(Movie movie) async {
+    print('is favourite was ${movie.isFavourite}');
+    await movie.loadFavouriteStatus();
+    print('is favourite become  ${movie.isFavourite}');
+  }
+
+  // Method to load 'isFavourite' status from local storage
+  Future<void> loadFavouriteStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    isFavourite = prefs.getBool('isFavourite_$id') ?? false; // Load using movie id as key
+  }
+
+  /* Future<void> setIsFavourite(int movieId, bool isFavourite) async {
+   * final prefs = await SharedPreferences.getInstance();
+   * await prefs.setBool('isFavourite_$movieId', isFavourite);
+  } */
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     try {

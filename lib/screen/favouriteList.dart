@@ -15,8 +15,8 @@ class favouriteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int movieId =646097;
-    List <int>movieids =[646097];
-    favouriteMovies2 = Api().getMoviesbyID(movieids);
+    List <int>movieids =[646097,64609];
+    favouriteMovies2 = Api().getMoviebyID(movieids);
     //favouriteMovies = Api().getMovieById(movieId);
     return Scaffold(
         appBar: AppBar(
