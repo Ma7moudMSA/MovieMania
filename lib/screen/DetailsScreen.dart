@@ -70,7 +70,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         color: BackgroundColour.backgroundColor ==
                             BackgroundColour.isitdark
                             ? Color(0xFFffffff)
-                            : Color(0xFF000000), // Dynamic color based on theme
+                            : Color(0xFFffffff), // Dynamic color based on theme
                       ),
                     ),
                     width: 150,
@@ -84,7 +84,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Image.network(
                   '${Constants.imagePath}${widget.movie.backdropPath}',
                   filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(24),
