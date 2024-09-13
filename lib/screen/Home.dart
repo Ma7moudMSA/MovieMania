@@ -41,6 +41,7 @@ class _HomeState extends State<Home> {
   late Future<List<Movie>> comedyMovies;
   late Future<List<Movie>> scifiMovies;
   late Future<List<Movie>> horrorMovies;
+
   late Future<List<Movie>> nowplayingmovies;
   late Future<List<Movie>> idmovies;
   late Future<idclass> favmovie;

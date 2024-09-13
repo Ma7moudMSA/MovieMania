@@ -128,7 +128,7 @@ class Api {
     }
   }
 
-  static Future<Map<String, dynamic>> searchMovies(String query) async {
+  static Future<List<Result>> searchMovies(String query) async {
     final url =
         'https://api.themoviedb.org/search/movie?api_key=${Constants.apiKey}&query=$query';
     final response = await http.get(Uri.parse(url));
