@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moviemania/main.dart';
 import 'package:moviemania/screen/Home.dart';
 import 'package:moviemania/screen/login.dart';
 import 'package:moviemania/screen/signUp.dart';
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
     Future.delayed(Duration(seconds: 2),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>Home()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>login()));
     });
     super.initState();
   }

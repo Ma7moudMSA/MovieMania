@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/screen/Home.dart';
 import 'package:moviemania/screen/signUp.dart';
+import 'package:moviemania/services/firebase_aut_services.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -18,7 +20,6 @@ class _loginState extends State<login> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff191919),
-        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SafeArea(
         child: Container(
@@ -134,9 +135,7 @@ class _loginState extends State<login> {
                           ),
                           child: Center(
                             child: MaterialButton(
-                              onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
-                              },
+                              onPressed: loginAction,
                                 child: Text("Login",style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.bold),)),
                           ),
                         ),
@@ -168,5 +167,18 @@ class _loginState extends State<login> {
         ),
       ),
     );
+  }
+  void loginAction()async{
+    await FireBaseService().signin(emailController.text, passwordController.text).then((val){
+      if(val is User) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+
+      }
+      else if(val is String){
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(val.toString()),backgroundColor: Colors.red,));
+      }
+
+    });
+
   }
 }

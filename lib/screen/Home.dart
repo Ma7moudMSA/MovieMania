@@ -92,8 +92,17 @@ class _HomeState extends State<Home> {
             Row(
               children: [
                 MaterialButton(
-                  onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));},
-                  child: Text("create account",style: TextStyle(color:  Color(0xff420516),fontSize: 14,fontWeight: FontWeight.bold),),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => login()));
+                  },
+                  child: Text(
+                    "create account",
+                    style: TextStyle(
+                        color: Color(0xff420516),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             )

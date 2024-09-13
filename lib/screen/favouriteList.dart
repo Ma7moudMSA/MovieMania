@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moviemania/Models/Movie.dart';
 
 import '../Widgets/footer.dart';
 import 'login.dart';

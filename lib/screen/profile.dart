@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviemania/Widgets/footer.dart';
 import 'package:moviemania/screen/splash_screen.dart';
+import 'package:moviemania/services/firebase_aut_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
@@ -14,25 +16,8 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-  var name='';
-  var email='';
-  var password='';
 
-  @override
-  void initState(){
-    getSavedData();
-    super.initState();
-  }
-  getSavedData()async{
-    final prefs=await SharedPreferences.getInstance();
-    name=prefs.getString('Name')!;
-    email=prefs.getString('Email')!;
-    password=prefs.getString('password')!;
-    setState(() {
 
-    });
-
-  }
   @override
   Widget build(BuildContext context) {
         return Scaffold(
@@ -53,20 +38,20 @@ class _profileState extends State<profile> {
             SizedBox(height: 10,),
             Text("Info"),
             SizedBox(height: 20,),
-            itemProfile("Name", name, CupertinoIcons.person),
+            itemProfile("Name", FirebaseAuth.instance.currentUser!.displayName.toString(), CupertinoIcons.person),
             SizedBox(height: 20,),
-            itemProfile("email", email, CupertinoIcons.mail),
-            SizedBox(height: 20,),
-            itemProfile("password", password, CupertinoIcons.mail),
+            itemProfile("email", FirebaseAuth.instance.currentUser!.email.toString(), CupertinoIcons.mail),
             SizedBox(height:20),
 
            ElevatedButton(
                style: ElevatedButton.styleFrom(
                    backgroundColor: Color(0xff420516)
                ),
-               onPressed: (){
-             Navigator.push(context, MaterialPageRoute(builder: (context)=>SplashScreen()));
-           }, child: Text("logout",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),))
+               onPressed: ()async{
+                 await FireBaseService().signout();
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
+               },
+               child: Text("logout",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),))
 
           ],
         ),
@@ -99,4 +84,5 @@ class _profileState extends State<profile> {
       ),
     );
   }
+
 }

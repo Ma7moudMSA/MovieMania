@@ -52,13 +52,13 @@ class pageFooter extends StatelessWidget {
         ),
         // Optional: Back to Top Button
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xff420516)
+          ),
           onPressed: () {
             Scrollable.of(context)?.position?.moveTo(0.0);
-
-
-
-                      },
-          child: Text("Back to Top"),
+            },
+          child: Text("Back to Top",style: TextStyle(color: Colors.white),),
         ),
       ],
     );

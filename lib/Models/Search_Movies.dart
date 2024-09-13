@@ -1,36 +1,38 @@
 import 'dart:convert';
 
-class SearchModel {
+import '../Widgets/Constants.dart';
+
+class SearchMovie {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  SearchModel({
+  SearchMovie({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  SearchModel copyWith({
+  SearchMovie copyWith({
     int? page,
     List<Result>? results,
     int? totalPages,
     int? totalResults,
   }) =>
-      SearchModel(
+      SearchMovie(
         page: page ?? this.page,
         results: results ?? this.results,
         totalPages: totalPages ?? this.totalPages,
         totalResults: totalResults ?? this.totalResults,
       );
 
-  factory SearchModel.fromRawJson(String str) => SearchModel.fromJson(json.decode(str));
+  factory SearchMovie.fromRawJson(String str) => SearchMovie.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
+  factory SearchMovie.fromJson(Map<String, dynamic> json) => SearchMovie(
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
@@ -44,6 +46,8 @@ class SearchModel {
     "total_results": totalResults,
   };
 }
+
+
 
 class Result {
   bool adult;
@@ -116,7 +120,7 @@ class Result {
   String toRawJson() => json.encode(toJson());
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    adult: json["adult"] ,
+    adult: json["adult"],
     backdropPath: json["backdrop_path"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
@@ -148,4 +152,5 @@ class Result {
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
+
 }
