@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: start(),
       /*routes: {
         "home": (context)=> Home(),
         "search": (context)=>SearchPage(),
@@ -66,7 +66,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 start(){
-  SplashScreen();
   if(FirebaseAuth.instance.currentUser!=null) return Home();
   else return SplashScreen();
 }

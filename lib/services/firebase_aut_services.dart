@@ -16,7 +16,7 @@ class FireBaseService{
 
   Future<dynamic>signin(String email,String password)async{
     try{
-      UserCredential user= await  _auth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential user= await  _auth.signInWithEmailAndPassword(email: email, password: password);
       return user.user;
     } on FirebaseAuthException catch(e){
 

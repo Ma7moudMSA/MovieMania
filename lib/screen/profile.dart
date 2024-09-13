@@ -47,8 +47,8 @@ class _profileState extends State<profile> {
                style: ElevatedButton.styleFrom(
                    backgroundColor: Color(0xff420516)
                ),
-               onPressed: ()async{
-                 await FireBaseService().signout();
+               onPressed: (){
+                 FirebaseAuth.instance.signOut();
                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));
                },
                child: Text("logout",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),))

@@ -4,6 +4,7 @@ import 'package:moviemania/Widgets/Constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:moviemania/Models/Movie.dart';
 
+import '../Models/Search_Movies.dart';
 import '../Models/idmovie.dart';
 
 class Api {
@@ -19,6 +20,8 @@ class Api {
       'https://api.themoviedb.org/3/search/movie?api_key=${Constants.apiKey}';
   static const _recommended =
       'https://api.themoviedb.org/3/movie/popular?api_key=${Constants.apiKey}';
+
+
 
   Future<List<Movie>> getTrendingMovies() async {
     final responses = await http.get(Uri.parse(_trendingURL));
