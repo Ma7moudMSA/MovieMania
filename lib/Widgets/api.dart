@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:moviemania/Models/RecommendationModel.dart';
-import 'package:moviemania/Models/searchModel.dart';
 import 'package:moviemania/Widgets/Constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:moviemania/Models/Movie.dart';
@@ -85,32 +83,9 @@ class Api {
     }
   }
 
-  Future<SearchModel> getSearchedMovie(String searchText) async {
-    late String endPoint = "search/movie?query=$searchText";
-    final url = Uri.parse('$_searchedMovie$endPoint');
-    print("url $url"); // Add genre ID parameter
-    final response = await http.get(url, headers: {
-      "Authorization":
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MmMwMWUyYWI2OGM3NWFhMGMyM2MxMjRiMGU3NjFlNCIsIm5iZiI6MTcyNTcxNDc3MC4zNTcxMTYsInN1YiI6IjY2ZDg0MGJhOGNlZTY4ZDMzMjlkMzI4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.XQDEtBmWaAQgPGHiZlGUra0Byiv5qVwi6flLD9wDXoQ"
-    });
-    if (response.statusCode == 200) {
-      print('Success');
-      return SearchModel.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to fetch searched movie');
-    }
-  }
 
-  Future<RecommendationModel> getRecommendedMovies() async {
-    final response = await http.get(Uri.parse(_recommended));
-    if (response.statusCode == 200) {
-      final decodeData = json.decode(response.body)['results'] as List;
-      print('200ok');
-      return RecommendationModel.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('Failed to fetch recommended movie');
-    }
-  }
+
+
 
   Future<List<Movie>> getMoviebyID(List<int> movieIds) async {
     final movies = <Movie>[]; // Empty list to store all fetched movies

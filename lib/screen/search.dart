@@ -22,9 +22,7 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController searchController = TextEditingController();
   late Future<List<Movie>> searchmovies;
   Api api = Api();
-  SearchModel? searchModel;
-
-
+  SearchMovie? searchModel;
 
   @override
   void dispose() {
