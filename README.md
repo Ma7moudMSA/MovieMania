@@ -44,7 +44,7 @@ breeze.
 1. **Clone the Repository:**
 
     ``` bash 
-    git clone https://github.com/your-username/your-project-name.git
+    git clone https://github.com/your-username/MovieMania.git
     ```
 
 
@@ -59,7 +59,6 @@ breeze.
 
 
 
-**License:**
 
 
 **Acknowledgments:**
